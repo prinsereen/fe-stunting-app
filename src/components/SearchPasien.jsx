@@ -1,0 +1,173 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import imgUser from '../assets/img/user.png';
+import { Link, useNavigate } from 'react-router-dom';
+
+export const SearchPasien = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [originalData, setOriginalData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem('accessToken');
+
+  // Mengambil data pasien dari API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/pasien', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
+        if (response.data.status === 'success') {
+          setOriginalData(response.data.result);
+          setFilteredData(response.data.result);
+        }
+      } catch (error) {
+        setError('Gagal mendapatkan data pasien.');
+      }
+    };
+    fetchData();
+  }, [accessToken]);
+
+  // Handler untuk memperbarui query pencarian
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Filter data berdasarkan pencarian atau kembalikan data asli
+    if (query === '') {
+      setFilteredData(originalData);
+    } else {
+      const filtered = originalData.filter((pasien) =>
+        pasien.nama.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  };
+
+  // Handler untuk logout
+  const handleLogout = async () => {
+    try {
+      await axios.delete('http://localhost:5000/logout', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      localStorage.removeItem('accessToken');
+      navigate('/');
+    } catch (error) {
+      setError('Gagal logout. Silakan coba lagi nanti.');
+    }
+  };
+
+  // Handler untuk delete pasien
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus pasien ini?');
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:5000/pasien/${id}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
+        setFilteredData(filteredData.filter((pasien) => pasien.id !== id));
+      } catch (error) {
+        setError('Gagal menghapus pasien.');
+      }
+    }
+  };
+
+  return (
+    <>
+      <nav className="px-24 p-4 shadow-lg bg-white">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div>
+            <Link to={'/search'} className="flex items-center">
+              <img src={imgUser} className="w-10 h-12 rounded-full mr-2" alt="User" />
+              <span className="text-gray-700 pl-2 font-semibold">Dokter</span>
+            </Link>
+          </div>
+          <div className="flex flex-grow justify-center mr-24">
+            <ul className="flex space-x-8">
+              <li>
+                <Link to={'/search'} className="text-gray-700 pl-2 hover:text-gray-900">
+                  Cari Pasien
+                </Link>
+              </li>
+              <li>
+                <Link to={'/pasien/add'} className="text-gray-700 pl-2 hover:text-gray-900">
+                  Tambah Pasien
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="border font-semibold border-gray-300 px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      {/* Bagian pencarian */}
+      <div className="max-w-7xl mx-auto px-24 mt-8">
+        {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
+        <div className="mb-4">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            placeholder="Cari nama pasien..."
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
+          />
+        </div>
+
+        {/* Card untuk data pasien */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Looping untuk beberapa data pasien */}
+          {filteredData.map((pasien) => (
+            <div
+              key={pasien.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-6">
+                <p className="text-lg font-semibold text-gray-700">{pasien.nama}</p>
+                <p className="text-md text-gray-600">{pasien.alamat}</p>
+              </div>
+              <div className="flex flex-wrap justify-center pb-4 space-x-2">
+                <div className="flex w-full justify-between px-6 mb-2">
+                  <Link to={`/kpsp/${pasien.id}`}>
+                    <button className="bg-indigo-500 hover:bg-indigo-700 text-white px-5 ml-2 py-1 rounded-md transition duration-300">
+                      Input
+                    </button>
+                  </Link>
+                  <Link to={`/result/${pasien.id}`}>
+                    <button className="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-1 rounded-md transition duration-300">
+                      Result
+                    </button>
+                  </Link>
+                </div>
+                <div className="flex w-full justify-between px-6">
+                  <Link to={`/update/${pasien.id}`}>
+                    <button className="bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded-md transition duration-300">
+                      Update
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(pasien.id)}
+                    className="bg-red-500 hover:bg-red-700 text-white px-4 py-1 rounded-md transition duration-300"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
