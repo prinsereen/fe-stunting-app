@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import imgUser from '../assets/img/user.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Navbar from './Navbar.jsx';
 
 export const SearchPasien = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
   const accessToken = localStorage.getItem('accessToken');
 
   // Mengambil data pasien dari API
@@ -46,22 +45,6 @@ export const SearchPasien = () => {
       setFilteredData(filtered);
     }
   };
-
-  // Handler untuk logout
-  const handleLogout = async () => {
-    try {
-      await axios.delete('http://localhost:5000/logout', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      });
-      localStorage.removeItem('accessToken');
-      navigate('/');
-    } catch (error) {
-      setError('Gagal logout. Silakan coba lagi nanti.');
-    }
-  };
-
   // Handler untuk delete pasien
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus pasien ini?');
@@ -81,37 +64,7 @@ export const SearchPasien = () => {
 
   return (
     <>
-      <nav className="px-24 p-4 shadow-lg bg-white">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div>
-            <Link to={'/search'} className="flex items-center">
-              <img src={imgUser} className="w-10 h-12 rounded-full mr-2" alt="User" />
-              <span className="text-gray-700 pl-2 font-semibold">Dokter</span>
-            </Link>
-          </div>
-          <div className="flex flex-grow justify-center mr-24">
-            <ul className="flex space-x-8">
-              <li>
-                <Link to={'/search'} className="text-gray-700 pl-2 hover:text-gray-900">
-                  Cari Pasien
-                </Link>
-              </li>
-              <li>
-                <Link to={'/pasien/add'} className="text-gray-700 pl-2 hover:text-gray-900">
-                  Tambah Pasien
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="border font-semibold border-gray-300 px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-          >
-            Logout
-          </button>
-        </div>
-      </nav>
-
+      <Navbar/>
       {/* Bagian pencarian */}
       <div className="max-w-7xl mx-auto px-24 mt-8">
         {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
@@ -145,7 +98,7 @@ export const SearchPasien = () => {
                     </button>
                   </Link>
                   <Link to={`/result/${pasien.id}`}>
-                    <button className="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-1 rounded-md transition duration-300">
+                    <button className="bg-yellow-600 hover:bg-yellow-800 text-white px-4 py-1 rounded-md transition duration-300">
                       Result
                     </button>
                   </Link>

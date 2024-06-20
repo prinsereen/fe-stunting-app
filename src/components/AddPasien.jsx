@@ -1,7 +1,7 @@
-import imgUser from '../assets/img/user.png';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import Navbar from './Navbar.jsx';
 
 export const AddPasien = () => {
   const accessToken = localStorage.getItem('accessToken');
@@ -13,23 +13,12 @@ export const AddPasien = () => {
     nama_ayah: '',
     nama_ibu: '',
     jenis_kelamin: '',
-    nik: ''
+    nik: '',
+    no_hp: '',
+    rt: '',
+    rw: ''
   });
   const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await axios.delete('http://localhost:5000/logout', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      });
-      localStorage.removeItem('accessToken');
-      navigate('/');
-    } catch (error) {
-      setError('Gagal logout. Silakan coba lagi nanti.');
-    }
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,37 +48,7 @@ export const AddPasien = () => {
 
   return (
     <>
-      <nav className="px-24 p-4 shadow-lg bg-white">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div>
-            <Link to={'/search'} className="flex items-center">
-              <img src={imgUser} className="w-10 h-12 rounded-full mr-2" alt="User" />
-              <span className="text-gray-700 pl-2 font-semibold">Dokter</span>
-            </Link>
-          </div>
-          <div className="flex flex-grow justify-center mr-24">
-            <ul className="flex space-x-8">
-              <li>
-                <Link to={'/search'} className="text-gray-700 pl-2 hover:text-gray-900">
-                  Cari Pasien
-                </Link>
-              </li>
-              <li>
-                <Link to={'/pasien/add'} className="text-gray-700 pl-2 hover:text-gray-900">
-                  Tambah Pasien
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="border font-semibold border-gray-300 px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-          >
-            Logout
-          </button>
-        </div>
-      </nav>
-
+      <Navbar/>
       <div className="max-w-7xl mx-auto px-52 mt-4">
         <div className="bg-white rounded-lg p-4">
           {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
@@ -135,7 +94,33 @@ export const AddPasien = () => {
                   <option value="P">Perempuan</option>
                 </select>
               </div>
+
+            <div className="col-span-2 flex flex-col">
+              <h5 className="text-gray-700 mb-2">No HP</h5>
+              <input
+                type="text"
+                name="no_hp"
+                value={formData.no_hp}
+                onChange={handleInputChange}
+                className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500"
+                required
+              />
             </div>
+            <div className="col-span-2 flex flex-col">
+              <h5 className="text-gray-700 mb-2">RT</h5>
+              <input
+                type="text"
+                name="rt"
+                value={formData.rt}
+                onChange={handleInputChange}
+                className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            </div>
+
+            
+
             {/* Right column */}
             <div className="space-y-4">
               <div className="flex flex-col">
@@ -171,8 +156,7 @@ export const AddPasien = () => {
                   required
                 />
               </div>
-            </div>
-            <div className="col-span-2 flex flex-col">
+              <div className="col-span-2 flex flex-col">
               <h5 className="text-gray-700 mb-2">Alamat</h5>
               <input
                 type="text"
@@ -183,10 +167,22 @@ export const AddPasien = () => {
                 required
               />
             </div>
-            <div className="col-span-2 mt-6 flex justify-center">
+            <div className="col-span-2 flex flex-col">
+              <h5 className="text-gray-700 mb-2">RW</h5>
+              <input
+                type="text"
+                name="rw"
+                value={formData.rw}
+                onChange={handleInputChange}
+                className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            </div>
+            <div className="col-span-2 mt-2 flex justify-center">
               <button
                 type="submit"
-                className="bg-indigo-500 text-white px-8 my-3 py-1 rounded-md hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-500"
+                className="bg-indigo-500 text-white px-8 my-3 py-2 rounded-md hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-500"
               >
                 Simpan
               </button>

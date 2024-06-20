@@ -4,6 +4,7 @@ import { SearchPasien } from "./components/SearchPasien"
 import { AddPasien } from "./components/AddPasien.jsx"
 import { UpdatePasien } from "./components/UpdatePasien.jsx"
 import { HealthResultTable} from "./components/Result.jsx"
+import Print from "./components/Print.jsx"
 import { KPSP } from "./components/KPSP.jsx"
 import { Route } from "react-router-dom"
 import { Routes } from "react-router-dom"
@@ -20,6 +21,7 @@ function App() {
       <Route path="/result/:id" element={<HealthResultTable/>}/>
       <Route path="/pasien/add" element={<AddPasien/>}/>
       <Route path="/update/:id" element={<UpdatePasien/>}/>
+      <Route path="/print" element={<Print/>}/>
     </Routes>
 
     </>

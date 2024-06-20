@@ -5,7 +5,6 @@ import imgAuth from '../assets/img/img-auth.png';
 
 export const Register = () => {
   const [formData, setFormData] = useState({
-    str: '',
     username: '',
     password: '',
     confirmPassword: ''
@@ -31,7 +30,6 @@ export const Register = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/register', {
-        str: formData.str,
         username: formData.username,
         password: formData.password,
         conf_password: formData.confirmPassword
@@ -59,17 +57,6 @@ export const Register = () => {
           <h2 className="text-2xl font-bold mb-8 text-center">Register</h2>
           {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Nomor STR</label>
-              <input
-                type="text"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                name="str"
-                placeholder="Nomor STR"
-                value={formData.str}
-                onChange={handleChange}
-              />
-            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Username</label>
               <input

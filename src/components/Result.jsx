@@ -1,7 +1,7 @@
-import imgUser from '../assets/img/user.png';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 export const HealthResultTable = () => {
   const { id } = useParams();
@@ -34,37 +34,7 @@ export const HealthResultTable = () => {
 
   return (
     <>
-      <nav className="px-24 p-4 shadow-lg bg-white">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div>
-            <Link to={'/search'}>
-              <a className="flex items-center" aria-current="page" href="#">
-                <img src={imgUser} className="w-10 h-12 rounded-full mr-2" alt="" />
-                <span className="text-gray-700 pl-2 font-semibold">Dokter</span>
-              </a>
-            </Link>
-          </div>
-          <div className="flex flex-grow justify-center mr-24">
-            <ul className="flex space-x-8">
-              <li>
-                <Link to={'/search'}>
-                  <a className="text-gray-700 pl-2 hover:text-gray-900">Cari Pasien</a>
-                </Link>
-              </li>
-              <li>
-                <Link to={'/pasien/add'}>
-                  <a className="text-gray-700 pl-2 hover:text-gray-900">Tambah Pasien</a>
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <Link to={'/'}>
-            <button className="border font-semibold border-gray-300 px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
-              Logout
-            </button>
-          </Link>
-        </div>
-      </nav>
+      <Navbar/>
 
       <div className="max-w-4xl mx-auto px-24 py-8 flex justify-between">
         {/* Left side */}
