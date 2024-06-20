@@ -25,7 +25,7 @@ export const UpdatePasien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/pasien/${id}`, {
+        const response = await axios.get(`https://backend-ium.up.railway.app/pasien/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -54,7 +54,7 @@ export const UpdatePasien = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/pasien/${id}`, formData, {
+      await axios.patch(`https://backend-ium.up.railway.app/pasien/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

@@ -14,7 +14,7 @@ export const SearchPasien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/pasien', {
+        const response = await axios.get('https://backend-ium.up.railway.app/pasien', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -50,7 +50,7 @@ export const SearchPasien = () => {
     const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus pasien ini?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5000/pasien/${id}`, {
+        await axios.delete(`https://backend-ium.up.railway.app/pasien/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

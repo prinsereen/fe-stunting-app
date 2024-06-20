@@ -19,7 +19,7 @@ export const KPSP = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/kpsp/${id}`, {
+        const response = await axios.get(`https://backend-ium.up.railway.app/kpsp/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -45,7 +45,7 @@ export const KPSP = () => {
     };
 
     try {
-      await axios.post(`http://localhost:5000/kpsp/result/pertumbuhan/${id}`, payload, {
+      await axios.post(`https://backend-ium.up.railway.app/kpsp/result/pertumbuhan/${id}`, payload, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -66,7 +66,7 @@ export const KPSP = () => {
     setIsSubmitting(true);
     try {
       for (const [soal_item_id, value] of Object.entries(answers)) {
-        await axios.post(`http://localhost:5000/kpsp/${id}`, {
+        await axios.post(`https://backend-ium.up.railway.app/kpsp/${id}`, {
           soal_item_id,
           value
         }, {
@@ -75,7 +75,7 @@ export const KPSP = () => {
           }
         });
       }
-      await axios.patch(`http://localhost:5000/kpsp/result/${id}`, {
+      await axios.patch(`https://backend-ium.up.railway.app/kpsp/result/${id}`, {
         id,
       }, {
         headers: {

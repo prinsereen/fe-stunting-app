@@ -13,7 +13,7 @@ export const HealthResultTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/result/${id}`, {
+        const response = await axios.get(`https://backend-ium.up.railway.app/result/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

@@ -31,7 +31,7 @@ export const AddPasien = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/pasien', formData, {
+      await axios.post('https://backend-ium.up.railway.app/pasien', formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
