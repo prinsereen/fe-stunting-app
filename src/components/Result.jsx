@@ -77,7 +77,6 @@ export const HealthResultTable = () => {
                 <th className="border border-indigo-200 px-4 py-2">IMT/UMUR</th>
                 <th className="border border-indigo-200 px-4 py-2">TB/UMUR</th>
                 <th className="border border-indigo-200 px-4 py-2">Lingkar Kepala</th>
-                <th className="border border-indigo-200 px-4 py-2">KPSP</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +87,6 @@ export const HealthResultTable = () => {
                   <td className="border border-indigo-200 px-4 py-2">{data.hasil_BMI}</td>
                   <td className="border border-indigo-200 px-4 py-2">{data.hasil_LFA}</td>
                   <td className="border border-indigo-200 px-4 py-2">{data.hasil_HCFA}</td>
-                  <td className="border border-indigo-200 px-4 py-2">{data.hasil_KPSP}</td>
                 </tr>
               ))}
             </tbody>
