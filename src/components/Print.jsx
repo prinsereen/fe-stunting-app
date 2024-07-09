@@ -166,7 +166,7 @@ const Print = () => {
           </PDFDownloadLink>
         </>
       ) : (
-        <p>Loading data...</p>
+        <p>Anda belum input data bulan ini </p>
       )}
     </div>
     </>
