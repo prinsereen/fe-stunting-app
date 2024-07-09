@@ -56,7 +56,7 @@ export const KPSP = () => {
         navigate(`/result/${id}`);  // Navigate to the result page if no KPSP data exists
       }
     } catch (error) {
-      setError('Gagal menyimpan data pertumbuhan');
+      setError('Anda sudah input data bulan ini');
       setSuccess('');
     }
   };
