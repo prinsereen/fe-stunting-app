@@ -12,7 +12,7 @@ const Navbar = () => {
         throw new Error('Access token not found');
       }
 
-      await axios.delete('https://backend-ium.up.railway.app/logout', {
+      await axios.delete('https://be-kembangq.toxrbm.easypanel.host/logout', {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

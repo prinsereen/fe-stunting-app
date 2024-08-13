@@ -23,7 +23,7 @@ export const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post('https://backend-ium.up.railway.app/login', {
+      const response = await axios.post('https://be-kembangq.toxrbm.easypanel.host/login', {
         username: formData.username,
         password: formData.password
       });

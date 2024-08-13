@@ -29,7 +29,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('https://backend-ium.up.railway.app/register', {
+      const response = await axios.post('https://be-kembangq.toxrbm.easypanel.host/register', {
         username: formData.username,
         password: formData.password,
         conf_password: formData.confirmPassword

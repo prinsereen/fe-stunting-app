@@ -14,7 +14,7 @@ export const SearchPasien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backend-ium.up.railway.app/pasien', {
+        const response = await axios.get('https://be-kembangq.toxrbm.easypanel.host/pasien', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -50,7 +50,7 @@ export const SearchPasien = () => {
     const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus pasien ini?');
     if (confirmDelete) {
       try {
-        await axios.delete(`https://backend-ium.up.railway.app/pasien/${id}`, {
+        await axios.delete(`https://be-kembangq.toxrbm.easypanel.host/pasien/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

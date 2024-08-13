@@ -95,7 +95,7 @@ const Print = () => {
       const accessToken = localStorage.getItem('accessToken');
 
       try {
-        const response = await axios.get('https://backend-ium.up.railway.app/print', {
+        const response = await axios.get('https://be-kembangq.toxrbm.easypanel.host/print', {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

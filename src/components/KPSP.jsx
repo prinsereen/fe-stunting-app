@@ -19,7 +19,7 @@ export const KPSP = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://backend-ium.up.railway.app/kpsp/${id}`, {
+        const response = await axios.get(`https://be-kembangq.toxrbm.easypanel.host/kpsp/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -45,7 +45,7 @@ export const KPSP = () => {
     };
 
     try {
-      await axios.post(`https://backend-ium.up.railway.app/kpsp/result/pertumbuhan/${id}`, payload, {
+      await axios.post(`https://be-kembangq.toxrbm.easypanel.host/kpsp/result/pertumbuhan/${id}`, payload, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -66,7 +66,7 @@ export const KPSP = () => {
     setIsSubmitting(true);
     try {
       for (const [soal_item_id, value] of Object.entries(answers)) {
-        await axios.post(`https://backend-ium.up.railway.app/kpsp/${id}`, {
+        await axios.post(`https://be-kembangq.toxrbm.easypanel.host/kpsp/${id}`, {
           soal_item_id,
           value
         }, {
@@ -75,7 +75,7 @@ export const KPSP = () => {
           }
         });
       }
-      await axios.patch(`https://backend-ium.up.railway.app/kpsp/result/${id}`, {
+      await axios.patch(`https://be-kembangq.toxrbm.easypanel.host/kpsp/result/${id}`, {
         id,
       }, {
         headers: {
