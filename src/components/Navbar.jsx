@@ -12,7 +12,7 @@ const Navbar = () => {
         throw new Error('Access token not found');
       }
 
-      await axios.delete('https://be-kembangq.toxrbm.easypanel.host/logout', {
+      await axios.delete('http://103.250.10.16:3001/logout', {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

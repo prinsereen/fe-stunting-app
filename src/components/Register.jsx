@@ -29,7 +29,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('https://be-kembangq.toxrbm.easypanel.host/register', {
+      const response = await axios.post('http://103.250.10.16:3001/register', {
         username: formData.username,
         password: formData.password,
         conf_password: formData.confirmPassword

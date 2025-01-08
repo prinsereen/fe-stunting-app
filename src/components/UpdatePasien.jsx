@@ -25,7 +25,7 @@ export const UpdatePasien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://be-kembangq.toxrbm.easypanel.host/pasien/${id}`, {
+        const response = await axios.get(`http://103.250.10.16:3001/pasien/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -54,7 +54,7 @@ export const UpdatePasien = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`https://be-kembangq.toxrbm.easypanel.host/pasien/${id}`, formData, {
+      await axios.patch(`http://103.250.10.16:3001/pasien/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

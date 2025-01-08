@@ -23,7 +23,6 @@ function App() {
       <Route path="/update/:id" element={<UpdatePasien/>}/>
       <Route path="/print" element={<Print/>}/>
     </Routes>
-
     </>
   )
 }

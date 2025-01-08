@@ -19,7 +19,7 @@ export const KPSP = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://be-kembangq.toxrbm.easypanel.host/kpsp/${id}`, {
+        const response = await axios.get(`http://103.250.10.16:3001/kpsp/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -45,7 +45,7 @@ export const KPSP = () => {
     };
 
     try {
-      await axios.post(`https://be-kembangq.toxrbm.easypanel.host/kpsp/result/pertumbuhan/${id}`, payload, {
+      await axios.post(`http://103.250.10.16:3001/kpsp/result/pertumbuhan/${id}`, payload, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -66,7 +66,7 @@ export const KPSP = () => {
     setIsSubmitting(true);
     try {
       for (const [soal_item_id, value] of Object.entries(answers)) {
-        await axios.post(`https://be-kembangq.toxrbm.easypanel.host/kpsp/${id}`, {
+        await axios.post(`http://103.250.10.16:3001/kpsp/${id}`, {
           soal_item_id,
           value
         }, {
@@ -75,7 +75,7 @@ export const KPSP = () => {
           }
         });
       }
-      await axios.patch(`https://be-kembangq.toxrbm.easypanel.host/kpsp/result/${id}`, {
+      await axios.patch(`http://103.250.10.16:3001/kpsp/result/${id}`, {
         id,
       }, {
         headers: {

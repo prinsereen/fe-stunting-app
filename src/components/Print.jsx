@@ -95,7 +95,7 @@ const Print = () => {
       const accessToken = localStorage.getItem('accessToken');
 
       try {
-        const response = await axios.get('https://be-kembangq.toxrbm.easypanel.host/print', {
+        const response = await axios.get('http://103.250.10.16:3001/print', {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
