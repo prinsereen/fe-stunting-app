@@ -14,7 +14,7 @@ export const SearchPasien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://103.250.10.16:3001/pasien', {
+        const response = await axios.get('https://personal-be-kembangq.iqkjgx.easypanel.host/pasien', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -50,7 +50,7 @@ export const SearchPasien = () => {
     const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus pasien ini?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://103.250.10.16:3001/pasien/${id}`, {
+        await axios.delete(`https://personal-be-kembangq.iqkjgx.easypanel.host/pasien/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

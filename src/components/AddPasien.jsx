@@ -31,7 +31,7 @@ export const AddPasien = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://103.250.10.16:3001/pasien', formData, {
+      await axios.post('https://personal-be-kembangq.iqkjgx.easypanel.host/pasien', formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

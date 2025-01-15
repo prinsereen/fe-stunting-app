@@ -25,7 +25,7 @@ export const UpdatePasien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://103.250.10.16:3001/pasien/${id}`, {
+        const response = await axios.get(`https://personal-be-kembangq.iqkjgx.easypanel.host/pasien/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -54,7 +54,7 @@ export const UpdatePasien = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://103.250.10.16:3001/pasien/${id}`, formData, {
+      await axios.patch(`https://personal-be-kembangq.iqkjgx.easypanel.host/pasien/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

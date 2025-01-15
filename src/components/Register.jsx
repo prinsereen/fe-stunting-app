@@ -29,7 +29,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://103.250.10.16:3001/register', {
+      const response = await axios.post('https://personal-be-kembangq.iqkjgx.easypanel.host/register', {
         username: formData.username,
         password: formData.password,
         conf_password: formData.confirmPassword

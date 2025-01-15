@@ -13,7 +13,7 @@ export const HealthResultTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://103.250.10.16:3001/result/${id}`, {
+        const response = await axios.get(`https://personal-be-kembangq.iqkjgx.easypanel.host/result/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
